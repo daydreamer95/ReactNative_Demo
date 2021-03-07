@@ -1,10 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MainMenu from "./Views/MainMenu";
+import MainMenu from "./Components/MainMenu";
+import AbsenceFormComponent from "./Components/AbsenceFormComponent";
 
 export default function App() {
-  return <MainMenu></MainMenu>;
+  return (
+    <View style={styles.container}>
+      <AbsenceFormComponent></AbsenceFormComponent>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
