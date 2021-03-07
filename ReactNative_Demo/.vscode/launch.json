@@ -13,7 +13,7 @@
     },
     {
       "name": "Attach to packager",
-      "cwd": "${workspaceFolder}/.vscode/.react",
+      "cwd": "${workspaceFolder}",
       "type": "reactnative",
       "request": "attach"
     }
