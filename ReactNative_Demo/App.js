@@ -18,7 +18,7 @@ export default function App() {
         <Footer></Footer>
       </View>
       <View style={[styles.mainLayout, styles.box]}>
-        <MainMenu></MainMenu>
+        <AbsenceFormComponent></AbsenceFormComponent>
       </View>
       <View style={[styles.footer, styles.box]}>
         <Footer></Footer>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   mainLayout: {
     flex: 10,
-    backgroundColor: "#8BC34A",
+    backgroundColor: "#FFFFFF",
   },
   footer: {
     flex: 1,
