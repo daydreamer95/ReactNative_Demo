@@ -1,13 +1,28 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import MainMenu from "./Components/MainMenu";
 import AbsenceFormComponent from "./Components/AbsenceFormComponent";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+
+var { height } = Dimensions.get("window");
+
+var box_count = 3;
+var box_height = height / box_count;
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <AbsenceFormComponent></AbsenceFormComponent>
+      <View style={[styles.header, styles.box]}>
+        <Footer></Footer>
+      </View>
+      <View style={[styles.mainLayout, styles.box]}>
+        <MainMenu></MainMenu>
+      </View>
+      <View style={[styles.footer, styles.box]}>
+        <Footer></Footer>
+      </View>
     </View>
   );
 }
@@ -15,8 +30,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "column",
+  },
+  box: {
+    height: box_height,
+  },
+  header: {
+    flex: 1,
+    backgroundColor: "#2196F3",
+  },
+  mainLayout: {
+    flex: 10,
+    backgroundColor: "#8BC34A",
+  },
+  footer: {
+    flex: 1,
+    backgroundColor: "#e3aa1a",
   },
 });

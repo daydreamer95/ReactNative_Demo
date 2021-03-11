@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import ReactNative, { TextInput, Text, View, StyleSheet } from "react-native";
+import ReactNative, {
+  TextInput,
+  Text,
+  View,
+  StyleSheet,
+  Input,
+} from "react-native";
 
 export default function AbsenceFormComponent() {
   const [emailAdress, setEmailAdress] = useState("");
@@ -10,7 +16,10 @@ export default function AbsenceFormComponent() {
   const [totalOffDate, setTotalOffDate] = useState(0);
   const [includedSaturday, setIncludedSaturday] = useState(0);
 
-  function handleChange() {}
+  // function handleChange(event) {
+  //   console.log(event);
+  //   setEmailAdress((previous) => "event.target.value");
+  // }
 
   return (
     <View>
@@ -18,7 +27,7 @@ export default function AbsenceFormComponent() {
       <TextInput
         style={styles.textEmail}
         placeHolder="Your email"
-        onChangeText={() => this.handleChange}
+        onChangeText={(text) => setEmailAdress(text)}
         value={emailAdress}
       />
     </View>
@@ -27,6 +36,13 @@ export default function AbsenceFormComponent() {
 
 const styles = StyleSheet.create({
   textEmail: {
-    height: "40px",
+    padding: 5,
+    margin: 5,
+    height: 40,
+    width: "100%",
+    color: "#000000",
+    height: 40,
+    borderColor: "#7a42f4",
+    borderWidth: 1,
   },
 });
