@@ -10,9 +10,11 @@ import ReactNative, {
 } from "react-native";
 import {Picker} from '@react-native-picker/picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator} from '@react-navigation/stack'
 
 
-export default function AbsenceFormComponent() {
+export default function AbsenceFormComponent({navigation}) {
   const [emailAdress, setEmailAdress] = useState("");
   const [projectName, setProjectName] = useState("");
   const [absenceType, setAbsenceType] = useState("");
@@ -24,12 +26,17 @@ export default function AbsenceFormComponent() {
   const [toDate, setToDate] = useState(new Date());
   const [showToDatePicker, setShowToDatePicker] = useState(false);
   const [modeToDatePicker, setModeToDatePicker] = useState('');
-  //
   const [totalOffDate, setTotalOffDate] = useState("");
   const [includedSaturday, setIncludedSaturday] = useState(0);
 
   const formUrl =
     "https://docs.google.com/forms/u/2/d/e/1FAIpQLSduUaiV98kwYhBbHmvuhg5uF3-g2DJG3sYv6p9gSbssJtq6GA/formResponse";
+
+  useEffect(() => {
+    setProjectName("Admin");
+    setAbsenceType("Nghỉ phép [Vacation]");
+    setIncludedSaturday(0);
+  });
 
   const handleSetTotalOffDate = (text) => {
     let newText = '';
@@ -78,7 +85,7 @@ export default function AbsenceFormComponent() {
     setShowToDatePicker(false);
   }
 
-  handleSubmitForm =() => {
+  handleSubmitForm = () => {
     var formBody = createFormBody();
 
     fetch(formUrl, {
@@ -93,6 +100,7 @@ export default function AbsenceFormComponent() {
       })
       .catch((error) => {
         console.log("Fail, error:", error);
+        navigation.navigate("MainMenu");
       });
   }
 
@@ -263,12 +271,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   selectBox: {
-    padding:5,
-    margin: 10,
-    height: 40,
-    color: "#000000",
-    borderColor: "#7a42f4",
+    fontSize: 14,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
     borderWidth: 1,
+    borderColor: 'blue',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30,
   },
   textTitle: {
     padding: 5,
