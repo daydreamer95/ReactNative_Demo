@@ -14,7 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack'
 
 
-export default function AbsenceFormComponent({navigation}) {
+export default function AbsenceFormComponent() {
   const [emailAdress, setEmailAdress] = useState("");
   const [projectName, setProjectName] = useState("");
   const [absenceType, setAbsenceType] = useState("");
