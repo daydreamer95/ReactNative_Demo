@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:921783557922:android:eae6cac2e02490089e0f7b",
+        "mobilesdk_app_id": "1:921783557922:android:ba91c7abc66550459e0f7b",
         "android_client_info": {
           "package_name": "com.daydreamerz.ReactNative_Demo"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "921783557922-5h8liodpf2gdpj8dlnput54f2vnbjpg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.daydreamerz.ReactNative_Demo",
+            "certificate_hash": "676d5fd6e15a9e5a267545572b52000bcd7f4bf8"
+          }
+        },
         {
           "client_id": "921783557922-88alss5sqarqq64tahi1ecaeqt1rnl9i.apps.googleusercontent.com",
           "client_type": 3
