@@ -22,7 +22,6 @@ import { firebaseConfig } from "./fire-base-config";
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-// firebase.initializeApp(firebaseConfig);
 
 var { height } = Dimensions.get("window");
 
@@ -35,16 +34,13 @@ export default function App({ navigation }) {
 
   useEffect(() => {
     checkIfLoggedIn();
-    console.log("isLogin:", isLogin);
+    // console.log("isLogin:", isLogin);
   }, [isLogin]);
 
   checkIfLoggedIn = () => {
-    if (isLogin) {
-      navigation.navigate("MainMenu");
-    }
     firebase.auth().onAuthStateChanged((respone) => {
       if (respone != null && respone.type == "success") {
-        isLogin = true;
+        setIsLogin(true);
         console.log(user);
       }
     });
@@ -52,24 +48,18 @@ export default function App({ navigation }) {
 
   function onAppLoginAsign() {
     setIsLogin(true);
-    console.log("onAppLoginAsign -isLogin:", isLogin);
+    // console.log("onAppLoginAsign -isLogin:", isLogin);
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={[styles.header, styles.box]}>
-        <Header></Header>
-      </View> */}
       <View style={[styles.mainLayout, styles.box]}>
         <NavigationContainer>
           <Stack.Navigator>
             {isLogin ? (
               <>
                 <Stack.Screen name="MainMenu" component={MainMenu} />
-                <Stack.Screen
-                  name="AbsenceFormComponent"
-                  component={AbsenceFormComponent}
-                />
+                <Stack.Screen name="AbsenceFormComponent" component={AbsenceFormComponent}/>
               </>
             ) : (
               <>

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import * as Google from "expo-google-app-auth";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen(props) {
   signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync({
