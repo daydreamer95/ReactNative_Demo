@@ -16,12 +16,8 @@ import LoginScreen from "./Components/Login/LoginScreen";
 import LoadingScreen from "./Components/Login/LoadingScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
-import firebase from "firebase";
+import * as firebase from "firebase";
 import { firebaseConfig } from "./fire-base-config";
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
 
 var { height } = Dimensions.get("window");
 
@@ -31,6 +27,10 @@ const Stack = createStackNavigator();
 
 export default function App({ navigation }) {
   const [isLogin, setIsLogin] = useState(false);
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
   useEffect(() => {
     checkIfLoggedIn();
@@ -46,9 +46,8 @@ export default function App({ navigation }) {
     });
   };
 
-  function onAppLoginAsign() {
+  function onAppLoginAsync() {
     setIsLogin(true);
-    // console.log("onAppLoginAsign -isLogin:", isLogin);
   }
 
   return (
@@ -59,14 +58,17 @@ export default function App({ navigation }) {
             {isLogin ? (
               <>
                 <Stack.Screen name="MainMenu" component={MainMenu} />
-                <Stack.Screen name="AbsenceFormComponent" component={AbsenceFormComponent}/>
+                <Stack.Screen
+                  name="AbsenceFormComponent"
+                  component={AbsenceFormComponent}
+                />
               </>
             ) : (
               <>
                 <Stack.Screen
                   name="LoginScreen"
                   component={LoginScreen}
-                  initialParams={{ onAppLoginAsign: onAppLoginAsign }}
+                  initialParams={{ onAppLoginAsync: onAppLoginAsync }}
                 />
               </>
             )}
