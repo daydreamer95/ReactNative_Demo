@@ -18,7 +18,24 @@ export default function LoginScreen(props) {
         var credential = firebase.auth.GoogleAuthProvider.credential(
               googleUser.idToken, googleUser.accessToken);
         // Sign in with credential from the Google user.
-        firebase.auth().signInWithCredential(credential).catch((error) => {
+        firebase
+        .auth()
+        .signInWithCredential(credential)
+        .then(function (result) {
+          console.log("user sign in");
+          firebase.database().ref('/users/'+result.user.uid)
+          .set({
+            gmail: result.user.email,
+            profile_picture: result.additionalUserInfo.profile.picture,
+            locale: result.additionalUserInfo.profile.locale,
+            first_name: result.additionalUserInfo.profile.given_name,
+            last_name: result.additionalUserInfo.profile.family_name
+          })
+          .then(function(snapshot){
+
+          })
+        })
+        .catch((error) => {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -52,7 +69,8 @@ export default function LoginScreen(props) {
     try {
       const result = await Google.logInAsync({
         clientId:
-          "1014057597814-ila7th1d5a0vu0mncv9b0ra1rchc7o2f.apps.googleusercontent.com",
+        "921783557922-kuabsiefu1tvsh059dcjjufc5ljuu5tf.apps.googleusercontent.com",
+          // "1014057597814-ila7th1d5a0vu0mncv9b0ra1rchc7o2f.apps.googleusercontent.com",
         // androidStandaloneAppClientId: `67:6D:5F:D6:E1:5A:9E:5A:26:75:45:57:2B:52:00:0B:CD:7F:4B:F8`,
         scopes: ["profile", "email"],
       });
